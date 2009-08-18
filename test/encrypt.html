@@ -1,0 +1,96 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <title></title>
+  <style type="text/css">
+    fieldset { float:left; width:400px; margin:10px }
+    label { display:block; margin-top:5px; }
+    textarea { display:block; width:100%; height:100px; }
+  </style>
+  <script type="text/javascript" src="../src/chrome/content/util/barrett.js"></script>
+  <script type="text/javascript" src="../src/chrome/content/util/basic_encoder.js"></script>
+  <script type="text/javascript" src="../src/chrome/content/util/bigint.js"></script>
+  <script type="text/javascript" src="../src/chrome/content/util/rsa.js"></script>
+  <script type="text/javascript">
+
+    var
+      RSA_Key_512 = "9F2EEA4AA03D55B33172E9A86CFF6156AC1628C67983193A337B98995151F9B0F41562290DB98697280E805803E4B18914519CEB55CEA5D03A927C28C36A4BC7",
+      key = setRSAKey512()
+    ;
+
+    function $(id){ return document.getElementById(id); }
+
+    function setRSAKey512(){
+      setMaxDigits(67);
+      return new RSAKeyPair("10001"," ",RSA_Key_512);
+    }
+
+    function encrypt_login(){
+      var
+        cid = $('cid').value,
+        password = $('password').value,
+        code = $('code').value,
+        salt = $('salt').value,
+        res = encryptedString(key,reverseStr(basicEncoder(cid + "_" + password + "_" + code + "_" + salt)))
+      ;
+      $('loginres').value = res;
+    }
+
+    function encrypt_pin(){
+      var
+        pin = $('pin').value,
+        salt = $('psalt').value,
+        res = encryptedString(key,reverseStr(basicEncoder(pin + "_" + salt)))
+      ;
+      $('pinres').value = res;
+    }
+
+    function refresh_pid_salt(){
+      var
+        gmt = new Date(),
+        year = String(gmt.getFullYear()).substring(2),
+        month = String(gmt.getMonth()+1),
+        day = String(gmt.getUTCDate()),
+        hours = String(gmt.getHours()),
+        minutes = String(gmt.getMinutes())
+      ;
+
+      month = month.length<2?'0'+month:month;
+      day = day.length<2?'0'+day:day;
+      minutes = minutes.length<2?'0'+minutes:minutes;
+      hours = hours.length<2?'0'+hours:hours;
+      $('psalt').value = year+month+day+hours+minutes;
+
+    };
+
+  </script>
+</head>
+<body>
+  <fieldset>
+    <legend>Encrypt Login Info</legend>
+    <label>Customer ID:</label>
+    <input type="text" id="cid">
+    <label>Password:</label>
+    <input type="password" id="password">
+    <label>Code:</label>
+    <input type="text" id="code">
+    <label>Salt:</label>
+    <input type="text" id="salt" value="30">
+    <label>Result</label>
+    <textarea id="loginres"></textarea>
+    <button onclick='encrypt_login()'>Encrypt</button>
+  </fieldset>
+  <fieldset>
+    <legend>Encrypt PIN</legend>
+    <label>PIN:</label>
+    <input type="password" id="pin">
+    <label>Salt:</label>
+    <input type="text" id="psalt" value=""><a href="javascript:refresh_pid_salt()">Refresh</a>
+    <script type="text/javascript">
+    </script>
+    <textarea id="pinres"></textarea>
+    <button onclick='encrypt_pin()'>Encrypt</button>
+  </fieldset>
+</body>
+</html>

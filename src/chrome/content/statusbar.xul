@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <!DOCTYPE overlay >
+ <overlay id="garanti"
+          xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+
+ <script type="application/x-javascript" src="chrome://garanti/content/logging.js"/>
+ <script type="application/x-javascript" src="chrome://garanti/content/util.js"/>
+ <script type="application/x-javascript" src="chrome://garanti/content/garanti.js"/>
+ <script type="application/x-javascript" src="chrome://garanti/content/config.js"/>
+ <script type="application/x-javascript" src="chrome://garanti/content/account.js"/>
+ <script type="application/x-javascript" src="chrome://garanti/content/barrett.js"/>
+ <script type="application/x-javascript" src="chrome://garanti/content/bigint.js"/>
+ <script type="application/x-javascript" src="chrome://garanti/content/rsa.js"/>
+ <script type="application/x-javascript" src="chrome://garanti/content/basic_encoder.js"/>
+
+ <statusbar id="status-bar">
+   <statusbarpanel id="garanti"
+     label="G"
+     tooltiptext="Toplam Bakiyeniz: ?"
+     insertbefore="statusbar-display"
+   />
+ </statusbar>
+
+ </overlay>

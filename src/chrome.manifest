@@ -1,0 +1,3 @@
+content     garanti    chrome/content/
+skin     garanti  classic  chrome/skin/
+overlay chrome://browser/content/browser.xul chrome://garanti/content/statusbar.xul
