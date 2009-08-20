@@ -9,7 +9,7 @@ class AccountTest(unittest.TestCase):
     acc.login()
 
   def test2Balance(self):
-    self.assertEqual(acc.balance,'236,80')
+    self.assertEqual(acc.balance,'0')
 
 if __name__ == '__main__':
   unittest.main()

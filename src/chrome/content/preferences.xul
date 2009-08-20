@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+
+<prefwindow id="garanti-prefs"
+     title="Secenekler"
+     xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+
+<prefpane id="garanti-pane" label="Garanti Ayarlari">
+  <script type="application/x-javascript" src="chrome://garanti/content/garanti.js"/>
+  <script type="application/x-javascript" src="chrome://garanti/content/config.js"/>
+  <script type="application/x-javascript" src="chrome://garanti/content/account.js"/>
+  <script type="application/x-javascript" src="chrome://garanti/content/prefwindow.js"/>
+  <script type="application/x-javascript" src="chrome://garanti/content/util/barrett.js"/>
+  <script type="application/x-javascript" src="chrome://garanti/content/util/bigint.js"/>
+  <script type="application/x-javascript" src="chrome://garanti/content/util/rsa.js"/>
+  <script type="application/x-javascript" src="chrome://garanti/content/util/basic_encoder.js"/>
+  <script type="application/x-javascript" src="chrome://garanti/content/util/curry.js"/>
+  <preferences>
+    <preference id="pref_display" name="garanti.display_balance" type="bool"/>
+    <preference id="pref_delay" name="garanti.delay" type="string"/>
+    <preference id="pref_cid" name="garanti.cid" type="string"/>
+  </preferences>
+
+  <groupbox>
+    <caption label="Hesap Bilgileri" />
+    <hbox align="center">
+      <label control="cid" value="Musteri no:"/>
+    </hbox>
+    <hbox align="center">
+      <textbox preference="pref_cid" onkeyup="encrypt()" id="cid" maxlength="8"/>
+    </hbox>
+    <hbox align="center">
+      <label value="Parola:"/>
+    </hbox>
+    <hbox align="center">
+      <textbox id="password" onkeyup="encrypt()" maxlength="12" type='password'/>
+    </hbox>
+    <hbox align="center">
+      <label value="Sifre(PIN):"/>
+    </hbox>
+    <hbox align="center">
+      <textbox id="pin" onkeyup="encrypt()" maxlength="12" type="password"/>
+    </hbox>
+    <hbox>
+      <button oncommand='test()' label='Test Et' />
+      <label id='test_log' value="" />
+    </hbox>
+  </groupbox>
+  <groupbox>
+    <caption label="Ayarlar" />
+    <hbox align="center">
+      <label control="display" value="Bakiyeyi Goster:"/>
+      <checkbox id="display_balance" preference="pref_display" label=""/>
+    </hbox>
+    <hbox align="center">
+      <label control="delay" value="Yenileme Araligi (sn):"/>
+    </hbox>
+    <hbox align="center">
+      <textbox preference="pref_delay" id="delay" maxlength="4"/>
+    </hbox>
+  </groupbox>
+</prefpane>
+
+</prefwindow>

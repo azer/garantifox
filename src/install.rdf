@@ -17,6 +17,7 @@
         <em:description>Shows Balances In Statusbar Of Garanti Bank Users</em:description>
         <em:creator>Azer Koculu</em:creator>
         <em:homepageURL>http://azer.kodfabrik.com</em:homepageURL>
+        <em:optionsURL>chrome://garanti/content/preferences.xul</em:optionsURL>        
     </Description>
 </RDF>
 

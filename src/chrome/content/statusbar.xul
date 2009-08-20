@@ -1,25 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
- <!DOCTYPE overlay >
- <overlay id="garanti"
+<!DOCTYPE overlay >
+ <overlay id="garanti-overlay"
           xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
 
- <script type="application/x-javascript" src="chrome://garanti/content/logging.js"/>
- <script type="application/x-javascript" src="chrome://garanti/content/util.js"/>
  <script type="application/x-javascript" src="chrome://garanti/content/garanti.js"/>
+ <script type="application/x-javascript" src="chrome://garanti/content/balance_watcher.js"/>
  <script type="application/x-javascript" src="chrome://garanti/content/config.js"/>
  <script type="application/x-javascript" src="chrome://garanti/content/account.js"/>
- <script type="application/x-javascript" src="chrome://garanti/content/barrett.js"/>
- <script type="application/x-javascript" src="chrome://garanti/content/bigint.js"/>
- <script type="application/x-javascript" src="chrome://garanti/content/rsa.js"/>
- <script type="application/x-javascript" src="chrome://garanti/content/basic_encoder.js"/>
+ <script type="application/x-javascript" src="chrome://garanti/content/util/logging.js"/>
+ <script type="application/x-javascript" src="chrome://garanti/content/util/curry.js"/>
 
  <statusbar id="status-bar">
    <statusbarpanel id="garanti"
-     label="G"
-     tooltiptext="Toplam Bakiyeniz: ?"
-     insertbefore="statusbar-display"
+     label="G: ?"
+     onclick="openDialog('chrome://garanti/content/preferences.xul','garanti-pane','chrome,titlebar,toolbar,centerscreen,modal');"
    />
+   <textbox id='login_inf' />
  </statusbar>
 
  </overlay>

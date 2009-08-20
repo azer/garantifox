@@ -55,14 +55,7 @@ class Account():
   @property
   def balance(self):
     logging.info('Getting total balance from my assets page.')
-    data = {
-      'sid':'0',
-      'hiddenUSR':'0x0',
-      'hiddenAPPV':'5',
-      'hiddenDate':'01.01.1970',
-      'hiddenTime':'00.00.00',
-      'hiddenGMT':'Thu, 17 January 1970 00:00:00 GMT'
-    }
+    logging.info('Cookie: '+self.cookie)
     data = {
       'hiddenAPPV':'5',
       'hiddenDate':'18.08.2009',
