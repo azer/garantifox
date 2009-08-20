@@ -23,13 +23,12 @@ Account.prototype = {
         'hiddenUSR':'1280x800',
         'sid':'0'
       }
-    ;
-    var req = this.open_page('/varliklar/varliklarim',data);
+      ;
+    var req = this.open_page('/varliklar/varliklarim',data,{ "Referer":"https://sube.garanti.com.tr/isube/menu" });
     this.pages['my-assets-page'] = req.responseText;
     var search = this.pages['my-assets-page'].match(/Toplam Bakiye  : \r\n([\w,]+)/);
-
     if(!search||search.length!=2)
-      throw Error(['Could not match balance pattern',req.responseText].join('\n\n'));
+      throw Error(['Could not match balance pattern',this.pages['my-assets-page']].join('\n\n'));
     return search[1];
   },
   get login_salt(){
@@ -55,6 +54,8 @@ Account.prototype = {
     if(!search||search.length!=2)
       throw Error(['Could not find PIN salt',req.responseText].join('\n\n'));
     return search[1];
+  },
+  'get_my_assets_page':function(){
   },
   'login':function(){
 
@@ -101,7 +102,6 @@ Account.prototype = {
       this.pages['dashboard-redir-page'] = req.responseText;
 
       var search =  this.pages['dashboard-redir-page'].match(/\/encurl\/(\w+)/);
-      alert([search.length,search[0],search[1],req.responseText].join('\n'));
 
       if(!search){
         throw Error(['Could not login','(Step2)',data['hiddenENCFIELDS'],'salt: '+salt,'cookie:'+this.cookie].join('\n'));
@@ -112,6 +112,7 @@ Account.prototype = {
     step2.call(this);
   },
   'open_page':function(path,data,headers){
+
     var req = new XMLHttpRequest(), body='';
     req.open(data&&'POST'||'GET', 'https://sube.garanti.com.tr/isube'+path, false);
 
@@ -124,6 +125,11 @@ Account.prototype = {
       req.setRequestHeader("Content-length", body.length);
     }
 
+    if(headers){
+      for(var header in headers)
+        req.setRequestHeader(header,headers[header]);
+    }
+
     req.send(body);
     
     if(req.status == 200)
@@ -131,3 +137,5 @@ Account.prototype = {
     throw Error('Connection Error');
   }
 }
+
+

@@ -66,7 +66,7 @@ class Account():
     }
     headers = {
       'Cookie':self.cookie,
-      'Referer':'https://sube.garanti.com.tr/isube/menuflash'
+      'Referer':"https://sube.garanti.com.tr/isube/menu"
     }
     res = self.open_page('/varliklar/varliklarim',data,headers)
     self.pages['my_assets_page'] = res.read()
