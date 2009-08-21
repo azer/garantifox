@@ -1,49 +1,56 @@
 <?xml version="1.0"?>
 <?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet href="chrome://garanti/skin/prefwindow.css" type="text/css"?>
 
 <prefwindow id="garanti-prefs"
-     title="Secenekler"
+     title="Secenekler - Garanti"
+     xmlns:html="http://www.w3.org/1999/xhtml"
      xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
 
 <prefpane id="garanti-pane" label="Garanti Ayarlari">
-  <script type="application/x-javascript" src="chrome://garanti/content/garanti.js"/>
   <script type="application/x-javascript" src="chrome://garanti/content/config.js"/>
-  <script type="application/x-javascript" src="chrome://garanti/content/account.js"/>
   <script type="application/x-javascript" src="chrome://garanti/content/prefwindow.js"/>
-  <script type="application/x-javascript" src="chrome://garanti/content/util/barrett.js"/>
-  <script type="application/x-javascript" src="chrome://garanti/content/util/bigint.js"/>
-  <script type="application/x-javascript" src="chrome://garanti/content/util/rsa.js"/>
-  <script type="application/x-javascript" src="chrome://garanti/content/util/basic_encoder.js"/>
   <script type="application/x-javascript" src="chrome://garanti/content/util/curry.js"/>
+  <script type="application/x-javascript" src="chrome://garanti/content/util/format_exception.js"/>
+  <script type="application/x-javascript" src="chrome://garanti/content/util/debug.js"/>
+  <script type="application/x-javascript" src="chrome://garanti/content/util/logging.js"/>
   <preferences>
     <preference id="pref_display" name="garanti.display_balance" type="bool"/>
     <preference id="pref_delay" name="garanti.delay" type="string"/>
     <preference id="pref_cid" name="garanti.cid" type="string"/>
   </preferences>
 
+  <html:div class='Logo'>logo</html:div>
   <groupbox>
     <caption label="Hesap Bilgileri" />
     <hbox align="center">
       <label control="cid" value="Musteri no:"/>
     </hbox>
     <hbox align="center">
-      <textbox preference="pref_cid" onkeyup="encrypt()" id="cid" maxlength="8"/>
+      <textbox preference="pref_cid" id="cid" maxlength="8"/>
     </hbox>
     <hbox align="center">
       <label value="Parola:"/>
     </hbox>
     <hbox align="center">
-      <textbox id="password" onkeyup="encrypt()" maxlength="12" type='password'/>
+      <textbox id="password" maxlength="12" type='password'/>
     </hbox>
     <hbox align="center">
       <label value="Sifre(PIN):"/>
     </hbox>
     <hbox align="center">
-      <textbox id="pin" onkeyup="encrypt()" maxlength="12" type="password"/>
+      <textbox id="pin" maxlength="12" type="password"/>
     </hbox>
     <hbox>
-      <button oncommand='test()' label='Test Et' />
-      <label id='test_log' value="" />
+      <button oncommand='Garanti.login()' label='Giris Yap' />
+      <button oncommand='Garanti.logout()' label='Cikis' />
+    </hbox>
+    <hbox>
+      <label id='login_status' value="" />
+    </hbox>
+    <hbox>
+      <button oncommand='debug(test)' label='Test Et' />
+      <label id='test_status' value="" />
     </hbox>
   </groupbox>
   <groupbox>

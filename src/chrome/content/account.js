@@ -13,6 +13,7 @@ Account.prototype = {
   'url_key_enc':'',
   'cookie':'',
   'pages':null,
+  'is_logged_in':false,
   get balance(){
     var
       data = {
@@ -27,8 +28,10 @@ Account.prototype = {
     var req = this.open_page('/varliklar/varliklarim',data,{ "Referer":"https://sube.garanti.com.tr/isube/menu" });
     this.pages['my-assets-page'] = req.responseText;
     var search = this.pages['my-assets-page'].match(/Toplam Bakiye  : \r\n([\w,]+)/);
-    if(!search||search.length!=2)
+    if(!search||search.length!=2){
+      this.is_logged_in = false;
       throw Error(['Could not match balance pattern',this.pages['my-assets-page']].join('\n\n'));
+    }
     return search[1];
   },
   get login_salt(){
@@ -80,7 +83,7 @@ Account.prototype = {
       var search =  this.pages['security-image-page'].match(/\/encurl\/(\w+)/);
 
       if(!search){
-        throw Error(['Could not login','(Step1)',data['hiddenENCFIELDS'],'salt: '+salt].join('\n'));
+        throw Error(['Could not login','(Step1)','cid:'+this.cid,'pwd:'+this.password,'salt: '+salt].join('\n'));
       }
 
       this.url_key_enc = search[1];
@@ -110,6 +113,11 @@ Account.prototype = {
 
     step1.call(this);
     step2.call(this);
+    this.is_logged_in = true;
+  },
+  'logout':function(){
+    this.open_page('/cikis');
+    this.is_logged_in = false;
   },
   'open_page':function(path,data,headers){
 

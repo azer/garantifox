@@ -1,40 +1,51 @@
-var balance_watcher = {
-  'prefs':null,
-  get account_id(){
-    return this.prefs.getCharPref("account_id");
-  },
+Garanti.balance_watcher = {
+  timer:null,
   get display_balance(){
-    return this.prefs.getBoolPref("display_balance");
+    return Garanti.prefs.getBoolPref("display_balance");
   },
   get delay(){
-    return Number(this.prefs.getCharPref("delay"))*1000;
+    return Number(Garanti.prefs.getCharPref("delay"))*1000;
+  },
+  '_value':'?',
+  get value(){
+    return this._value;
+  },
+  set value(value){
+    this._value = value;
+    this.update_label();
   },
   'init':function(){
     log('Initializing Balance Watcher');
-    this.prefs = Components.classes["@mozilla.org/preferences-service;1"]
-      .getService(Components.interfaces.nsIPrefService)
-      .getBranch("garanti.");
-    this.prefs.QueryInterface(Components.interfaces.nsIPrefBranch2);
-    this.prefs.addObserver("", this, false);
-
+    this.panel = document.getElementById('garanti-panel');
     this.refresh_information();
   },
-  'terminate':function(){
-    this.prefs.removeObserver("", this);    
-  },
-  observe: function(subject, topic, data){
-    log('prefevent: ',subject,topic,data);
-    if (topic != "nsPref:changed")
-      return;
-  },
   'refresh_information':function(){
-    log('Updating balance watcher bar'); 
-    window.setTimeout(Curry(this.refresh_information,this), this.delay);
+    log('Refreshing balance information..');
+    try {
+      this.value = Garanti.account.balance;
+      Garanti.account.is_logged_in = true;
+    } catch(e){
+      log('Could not get balance value.');
+      Garanti.account.is_logged_in = false;
+      return;
+    }
+    this.timer = window.setTimeout(Curry(this.refresh_information,this), this.delay);
   },
-  'show':function(){
-    
+  'stop_timer':function(){
+    log('Cleaning timout object of balance watcher.');
+    try {
+      clearTimeout(this.timer);
+    } catch(e){}
+  },
+  'update_label':function(value){
+    log('Updating label');
+    this.panel.label = ['$',this.value].join(' ');
   }
 };
 
-window.addEventListener("load", function(eventargs) { balance_watcher.init(); }, false);
-window.addEventListener("unload", function(eventargs) { balance_watcher.terminate(); }, false);
+addEventListener('load',function(){
+  if(config.DEBUG)
+    debug( Curry(Garanti.balance_watcher.init,Garanti.balance_watcher) );
+  else
+    Garanti.balance_watcher.init()
+},false);

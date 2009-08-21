@@ -2,7 +2,7 @@ const aConsoleService = Components.classes["@mozilla.org/consoleservice;1"].getS
 
 window.log = function(){
   if(!config.DEBUG)return false;
-  aConsoleService.logStringMessage(Array.prototype.join.call(arguments,', '));
+  aConsoleService.logStringMessage('[GARANTI] '+Array.prototype.join.call(arguments,', '));
 }
 
 window.log.dir = function(obj){

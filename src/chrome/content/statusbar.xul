@@ -8,15 +8,20 @@
  <script type="application/x-javascript" src="chrome://garanti/content/balance_watcher.js"/>
  <script type="application/x-javascript" src="chrome://garanti/content/config.js"/>
  <script type="application/x-javascript" src="chrome://garanti/content/account.js"/>
+ <script type="application/x-javascript" src="chrome://garanti/content/util/barrett.js"/>
+ <script type="application/x-javascript" src="chrome://garanti/content/util/bigint.js"/>
+ <script type="application/x-javascript" src="chrome://garanti/content/util/rsa.js"/>
+ <script type="application/x-javascript" src="chrome://garanti/content/util/basic_encoder.js"/>
  <script type="application/x-javascript" src="chrome://garanti/content/util/logging.js"/>
  <script type="application/x-javascript" src="chrome://garanti/content/util/curry.js"/>
+ <script type="application/x-javascript" src="chrome://garanti/content/util/format_exception.js"/>
+ <script type="application/x-javascript" src="chrome://garanti/content/util/debug.js"/>
 
  <statusbar id="status-bar">
-   <statusbarpanel id="garanti"
+   <statusbarpanel id="garanti-panel"
      label="G: ?"
      onclick="openDialog('chrome://garanti/content/preferences.xul','garanti-pane','chrome,titlebar,toolbar,centerscreen,modal');"
    />
-   <textbox id='login_inf' />
  </statusbar>
 
  </overlay>
