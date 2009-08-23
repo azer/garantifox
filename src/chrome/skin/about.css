@@ -1,0 +1,7 @@
+.Logo { padding:5px; height:52px; background:#fff url(chrome://garanti/content/logo.png) no-repeat; letter-spacing:-3px; color:rgb(220,50,20); padding:5px 0 0 147px; font:bold 36px Arial,sans-serif;  }
+.Title { margin:0; font:bold 18px Arial,sans-serif; }
+.VersionInfo { background:#fff; color:#333; margin:0 0 3px 0; font:10px Arial,sans-serif; text-align:right; }
+.Description { width:310px; padding-bottom:5px;  }
+.Link { color:#0000cc; text-decoration:underline; padding-top:5px; }
+
+vbox { padding:0 10px 0 10px; }

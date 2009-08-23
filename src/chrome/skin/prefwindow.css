@@ -1,1 +1,1 @@
-.Logo { height:52px; background:#fff url(chrome://garanti/content/logo.png) no-repeat;  }
+.Logo { padding:5px; height:52px; background:#fff url(chrome://garanti/content/logo.png) no-repeat; letter-spacing:-3px; color:rgb(220,50,20); padding:5px 0 0 147px; font:bold 36px Arial,sans-serif;  }

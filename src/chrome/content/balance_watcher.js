@@ -3,10 +3,13 @@ Garanti.balance_watcher = {
   get display_balance(){
     return Garanti.prefs.getBoolPref("display_balance");
   },
+  set display_balance(val){
+    Garanti.prefs.setBoolPref("display_balance",val);
+  },
   get delay(){
     return Number(Garanti.prefs.getCharPref("delay"))*1000;
   },
-  '_value':'?',
+  '_value':'',
   get value(){
     return this._value;
   },
@@ -37,9 +40,9 @@ Garanti.balance_watcher = {
       clearTimeout(this.timer);
     } catch(e){}
   },
-  'update_label':function(value){
+  'update_label':function(){
     log('Updating label');
-    this.panel.label = ['$',this.value].join(' ');
+    this.panel.value = this.display_balance?this.value:'';
   }
 };
 

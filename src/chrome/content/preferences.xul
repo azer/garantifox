@@ -20,7 +20,7 @@
     <preference id="pref_cid" name="garanti.cid" type="string"/>
   </preferences>
 
-  <html:div class='Logo'>logo</html:div>
+  <html:div class='Logo'>Fox</html:div>
   <groupbox>
     <caption label="Hesap Bilgileri" />
     <hbox align="center">

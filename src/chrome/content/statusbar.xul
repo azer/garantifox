@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="chrome://garanti/skin/statusbar.css" type="text/css"?>
 
 <!DOCTYPE overlay >
  <overlay id="garanti-overlay"
@@ -8,6 +9,8 @@
  <script type="application/x-javascript" src="chrome://garanti/content/balance_watcher.js"/>
  <script type="application/x-javascript" src="chrome://garanti/content/config.js"/>
  <script type="application/x-javascript" src="chrome://garanti/content/account.js"/>
+ <script type="application/x-javascript" src="chrome://garanti/content/page.js"/>
+ <script type="application/x-javascript" src="chrome://garanti/content/pages.js"/>
  <script type="application/x-javascript" src="chrome://garanti/content/util/barrett.js"/>
  <script type="application/x-javascript" src="chrome://garanti/content/util/bigint.js"/>
  <script type="application/x-javascript" src="chrome://garanti/content/util/rsa.js"/>
@@ -17,10 +20,33 @@
  <script type="application/x-javascript" src="chrome://garanti/content/util/format_exception.js"/>
  <script type="application/x-javascript" src="chrome://garanti/content/util/debug.js"/>
 
+  <popupset>
+    <menupopup id="garanti-menu">
+      <menuitem label="Ayarlar" oncommand="openDialog('chrome://garanti/content/preferences.xul','garanti-pane','chrome,titlebar,toolbar,centerscreen,modal');"/>
+      <menuitem label="Bakiyeyi Gizle" id='garanti-menu-hide-button' oncommand="Garanti.balance_watcher.display_balance = false;"/>
+      <menuitem label="Bakiyeyi Goster" id='garanti-menu-show-button' oncommand="Garanti.balance_watcher.display_balance = true;"/>
+      <menu label='Islemler'>
+        <menupopup>
+          <menuitem label="Tum Islemler" oncommand="Garanti.open_page('islemlistesi')"/>
+          <menuseparator/>
+          <menuitem label="Varliklarim" oncommand="Garanti.open_page('varliklarim')"/>
+          <menuitem label="Nakit Akisi" oncommand="Garanti.open_page('nakitakisi')"/>
+          <menuitem label="IBAN Bilgilerim" oncommand="Garanti.open_page('ibanbilgileri')"/>
+          <menuitem label="Vadeli Hesap" oncommand="Garanti.open_page('vadelihesap')"/>
+          <menuitem label="Kredi Kartlari" oncommand="Garanti.open_page('kredikartlari')"/>
+          <menuitem label="Sanal Kartlar" oncommand="Garanti.open_page('sanalkartlar')"/>
+          <menuitem label="Fatura Odemeleri" oncommand="Garanti.open_page('fatura')"/>
+        </menupopup>
+      </menu>
+      <menuitem label="GarantiFox Hakkinda" oncommand="openDialog('chrome://garanti/content/about.xul','garanti-pane','chrome,titlebar,toolbar,centerscreen');"/>
+    </menupopup>
+  </popupset>
+
  <statusbar id="status-bar">
-   <statusbarpanel id="garanti-panel"
-     label="G: ?"
-     onclick="openDialog('chrome://garanti/content/preferences.xul','garanti-pane','chrome,titlebar,toolbar,centerscreen,modal');"
+   <label id="garanti-panel"
+     class="GarantiPanel"
+     value=""
+     context='garanti-menu'
    />
  </statusbar>
 

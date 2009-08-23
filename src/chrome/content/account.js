@@ -4,6 +4,7 @@ function Account(){
 
 Account.prototype = {
   'cid':0,
+  'dashboard_url_key':null,
   'password':'',
   'pin':'',
   'login_enc':'',
@@ -18,10 +19,10 @@ Account.prototype = {
     var
       data = {
         'hiddenAPPV':'5',
-        'hiddenDate':'20.08.2009',
-        'hiddenGMT':'Thu, 20 Aug 2009 08:55:14 GMT',
-        'hiddenTime':'11.54.00',
-        'hiddenUSR':'1280x800',
+        'hiddenDate':'01.01.1970',
+        'hiddenGMT':'Thu, 20 Jan 1970 00:00:00 GMT',
+        'hiddenTime':'00.00.00',
+        'hiddenUSR':'0x0',
         'sid':'0'
       }
       ;
@@ -57,8 +58,6 @@ Account.prototype = {
     if(!search||search.length!=2)
       throw Error(['Could not find PIN salt',req.responseText].join('\n\n'));
     return search[1];
-  },
-  'get_my_assets_page':function(){
   },
   'login':function(){
 
@@ -101,7 +100,8 @@ Account.prototype = {
         }
       ;
 
-      var req = this.open_page(['/encurl/',this.url_key_enc].join(''),data);
+      var req_url = ['/encurl/',this.url_key_enc].join('');
+      var req = this.open_page(req_url,data);
       this.pages['dashboard-redir-page'] = req.responseText;
 
       var search =  this.pages['dashboard-redir-page'].match(/\/encurl\/(\w+)/);
@@ -109,6 +109,9 @@ Account.prototype = {
       if(!search){
         throw Error(['Could not login','(Step2)',data['hiddenENCFIELDS'],'salt: '+salt,'cookie:'+this.cookie].join('\n'));
       }
+
+      this.dashboard_url_key = search[1];
+
     };
 
     step1.call(this);
