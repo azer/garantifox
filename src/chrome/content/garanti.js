@@ -91,15 +91,6 @@ var Garanti = {
 
     gBrowser.selectedTab = tab;
   },
-  'open_dashboard':function(){
-    var tab;
-    if(this.account.is_logged_in)
-      tab = gBrowser.addTab('chrome://garanti/content/dashboard.xul#'+this.account.dashboard_url_key);
-    else {
-      tab = gBrowser.addTab('https://sube.garanti.com.tr/isube/login');
-    }
-    gBrowser.selectedTab = tab;
-  },
   'refresh_menu':function(){
     var
       is_bal_visible = this.balance_watcher.display_balance,
@@ -121,12 +112,11 @@ var Garanti = {
   }
 };
 
-
 addEventListener('load',function(){
   if(config.DEBUG)
     debug( Curry(Garanti.init,Garanti) );
   else
-    Garanti.init()
+    Garanti.init();
 },false);
 
 window.addEventListener("unload", function(eventargs) { Garanti.terminate(); }, false);

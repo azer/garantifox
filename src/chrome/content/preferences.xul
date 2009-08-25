@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
-<?xml-stylesheet href="chrome://garanti/skin/prefwindow.css" type="text/css"?>
+<?xml-stylesheet href="chrome://garantifox/skin/prefwindow.css" type="text/css"?>
 
 <prefwindow id="garanti-prefs"
      title="Secenekler - Garanti"
@@ -8,12 +8,12 @@
      xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
 
 <prefpane id="garanti-pane" label="Garanti Ayarlari">
-  <script type="application/x-javascript" src="chrome://garanti/content/config.js"/>
-  <script type="application/x-javascript" src="chrome://garanti/content/prefwindow.js"/>
-  <script type="application/x-javascript" src="chrome://garanti/content/util/curry.js"/>
-  <script type="application/x-javascript" src="chrome://garanti/content/util/format_exception.js"/>
-  <script type="application/x-javascript" src="chrome://garanti/content/util/debug.js"/>
-  <script type="application/x-javascript" src="chrome://garanti/content/util/logging.js"/>
+  <script type="application/x-javascript" src="chrome://garantifox/content/config.js"/>
+  <script type="application/x-javascript" src="chrome://garantifox/content/prefwindow.js"/>
+  <script type="application/x-javascript" src="chrome://garantifox/content/util/curry.js"/>
+  <script type="application/x-javascript" src="chrome://garantifox/content/util/format_exception.js"/>
+  <script type="application/x-javascript" src="chrome://garantifox/content/util/debug.js"/>
+  <script type="application/x-javascript" src="chrome://garantifox/content/util/logging.js"/>
   <preferences>
     <preference id="pref_display" name="garanti.display_balance" type="bool"/>
     <preference id="pref_delay" name="garanti.delay" type="string"/>

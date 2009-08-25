@@ -19,7 +19,12 @@ function test(){
   }
 }
 
-window.Garanti = window.opener.document.getElementById('garanti-panel').garanti;
+var mainWindow = window;
+while(mainWindow.opener){
+    mainWindow = mainWindow.opener;
+}
+
+window.Garanti = mainWindow.document.getElementById('garanti-panel').garanti;
 window.Garanti.pref_window = window;
 
 window.addEventListener('unload',function(){

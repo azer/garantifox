@@ -1,23 +1,21 @@
 <?xml version="1.0"?>
-
-<RDF xmlns="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-     xmlns:em="http://www.mozilla.org/2004/em-rdf#">
-
-    <Description about="urn:mozilla:install-manifest">
-        <em:id>garanti@software.kodfabrik.com</em:id>
-        <em:version>1.0a</em:version>
-        <em:type>2</em:type>
-        <em:targetApplication>
-            <Description>
-                <em:minVersion>3.0</em:minVersion>
-                <em:maxVersion>3.5.*</em:maxVersion>
-            </Description>
-        </em:targetApplication>
-        <em:name>Garanti</em:name>
-        <em:description>Shows Balances In Statusbar Of Garanti Bank Users</em:description>
-        <em:creator>Azer Koculu</em:creator>
-        <em:homepageURL>http://azer.kodfabrik.com</em:homepageURL>
-        <em:optionsURL>chrome://garanti/content/preferences.xul</em:optionsURL>        
-    </Description>
-</RDF>
-
+<RDF:RDF xmlns:em="http://www.mozilla.org/2004/em-rdf#"
+         xmlns:NC="http://home.netscape.com/NC-rdf#"
+         xmlns:RDF="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+  <RDF:Description RDF:about="rdf:#$rkk26"
+                   em:id="{ec8030f7-c20a-464f-9b0e-13a3a9e97384}"
+                   em:minVersion="3.0.*"
+                   em:maxVersion="3.5.*" />
+  <RDF:Description RDF:about="urn:mozilla:install-manifest"
+                   em:id="garantifox@software.kodfabrik.com"
+                   em:name="GarantiFox"
+                   em:version="1.0a"
+                   em:creator="Azer Koculu"
+                   em:description="Checks account balances automatically and creates shortcuts for Internet Branch of Garanti Bank."
+                   em:homepageURL="http://azer.kodfabrik.com"
+                   em:iconURL="chrome://garantifox/skin/favicon.ico"
+                   em:optionsURL="chrome://garantifox/content/preferences.xul"
+                   em:aboutURL="chrome://garantifox/content/about.xul">
+    <em:targetApplication RDF:resource="rdf:#$rkk26"/>
+  </RDF:Description>
+</RDF:RDF>

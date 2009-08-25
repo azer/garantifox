@@ -1,5 +1,6 @@
 Garanti.balance_watcher = {
   timer:null,
+  label:null,
   get display_balance(){
     return Garanti.prefs.getBoolPref("display_balance");
   },
@@ -19,7 +20,7 @@ Garanti.balance_watcher = {
   },
   'init':function(){
     log('Initializing Balance Watcher');
-    this.panel = document.getElementById('garanti-panel');
+    this.label = document.getElementById('garanti-balance');
     this.refresh_information();
   },
   'refresh_information':function(){
@@ -28,7 +29,8 @@ Garanti.balance_watcher = {
       this.value = Garanti.account.balance;
       Garanti.account.is_logged_in = true;
     } catch(e){
-      log('Could not get balance value.');
+        log(format_exception(e));
+
       Garanti.account.is_logged_in = false;
       return;
     }
@@ -41,8 +43,7 @@ Garanti.balance_watcher = {
     } catch(e){}
   },
   'update_label':function(){
-    log('Updating label');
-    this.panel.value = this.display_balance?this.value:'';
+    this.label.value = this.display_balance?this.value:'';
   }
 };
 

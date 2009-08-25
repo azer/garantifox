@@ -110,8 +110,6 @@ Account.prototype = {
         throw Error(['Could not login','(Step2)',data['hiddenENCFIELDS'],'salt: '+salt,'cookie:'+this.cookie].join('\n'));
       }
 
-      this.dashboard_url_key = search[1];
-
     };
 
     step1.call(this);
@@ -148,5 +146,3 @@ Account.prototype = {
     throw Error('Connection Error');
   }
 }
-
-
