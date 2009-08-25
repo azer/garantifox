@@ -34,7 +34,7 @@
        <menuitem label="Ayarlar" oncommand="openDialog('chrome://garantifox/content/preferences.xul','garanti-pane','chrome,titlebar,toolbar,centerscreen,modal');"/>
        <menuitem label="Bakiyeyi Gizle" id='garanti-menu-hide-button' oncommand="Garanti.balance_watcher.display_balance = false;"/>
        <menuitem label="Bakiyeyi Goster" id='garanti-menu-show-button' oncommand="Garanti.balance_watcher.display_balance = true;"/>
-       <menu label='Islemler'>
+       <menu label='Islemler' id='garanti-menu-links'>
          <menupopup>
            <menuitem label="Tum Islemler" oncommand="Garanti.open_page('islemlistesi')"/>
            <menuseparator/>

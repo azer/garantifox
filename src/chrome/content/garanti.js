@@ -95,11 +95,15 @@ var Garanti = {
     var
       is_bal_visible = this.balance_watcher.display_balance,
       hide_el = document.getElementById('garanti-menu-hide-button'),
-      show_el = document.getElementById('garanti-menu-show-button')
+      show_el = document.getElementById('garanti-menu-show-button'),
+      links_el = document.getElementById('garanti-menu-links')
     ;
+
+    log('Refreshing Right Click Menu',this.account.is_logged_in,is_bal_visible);
 
     hide_el.collapsed = !this.account.is_logged_in||!is_bal_visible;
     show_el.collapsed = !this.account.is_logged_in||is_bal_visible;
+    links_el.hidden = !this.account.is_logged_in;
   },
   'set_login_status':function(msg){
     if(this.pref_window){

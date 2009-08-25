@@ -117,8 +117,10 @@ Account.prototype = {
     this.is_logged_in = true;
   },
   'logout':function(){
+    log('Logging out');
     this.open_page('/cikis');
     this.is_logged_in = false;
+    Garanti.refresh_menu();
   },
   'open_page':function(path,data,headers){
 
